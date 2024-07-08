@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .weather-app {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .weather-app input {
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .weather-app button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .weather-app button:hover {
+            background: #0056b3;
+        }
+        .weather-info {
+            text-align: left;
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .weather-info h1 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .weather-info h3 {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #555;
+        }
+        .weather-info h5 {
+            margin: 3px 0;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-app">
+        <h1>Weather App</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter location">
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if data.country_code %}
+        <div class="weather-info" id="weather-info">    
+            <h1>{{city}}</h1>
+            <h3>country code : {{data.country_code}}</h3>
+            <h5>coordinate : {{data.coordinate}}</h5>
+            <h5>temp : {{data.temp}}</h5>
+            <h5>pressure : {{data.pressure}}</h5>
+            <h5>humidity : {{data.humidity}}</h5>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
